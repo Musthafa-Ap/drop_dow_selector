@@ -128,7 +128,7 @@ class _DropDownSelectorState extends State<DropDownSelector> {
                                   fillColor: Colors.grey[200],
                                   filled: true,
                                   prefixIcon: const ImageIcon(
-                                    AssetImage("assets/search.png"),
+                                    AssetImage("assets/images/search.png"),
                                     color: Color(0xffAFAFAF),
                                   ),
                                   suffixIcon: searchController.text.isEmpty
@@ -143,7 +143,8 @@ class _DropDownSelectorState extends State<DropDownSelector> {
                                             });
                                           },
                                           child: const ImageIcon(
-                                            AssetImage("assets/clear.png"),
+                                            AssetImage(
+                                                "assets/images/clear.png"),
                                             color: Color(0xff131313),
                                           ),
                                         ),
