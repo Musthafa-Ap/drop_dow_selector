@@ -1,12 +1,12 @@
 library drop_down_selector;
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final List selectedData = [];
 
 class DropDownSelector<T> extends StatefulWidget {
   final List listOfItems;
+  final Color? containColor;
   final String title;
   final Color? buttonColor;
   final String? textFieldHint;
@@ -19,6 +19,7 @@ class DropDownSelector<T> extends StatefulWidget {
   const DropDownSelector(
       {super.key,
       this.onDone,
+      this.containColor,
       required this.listOfItems,
       required this.title,
       required this.onChanged,
@@ -47,6 +48,7 @@ class _DropDownSelectorState extends State<DropDownSelector> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
+        readOnly: true,
         cursorColor: Colors.black,
         onTap: () {
           showModalBottomSheet(
@@ -127,8 +129,8 @@ class _DropDownSelectorState extends State<DropDownSelector> {
                               decoration: InputDecoration(
                                   fillColor: Colors.grey[200],
                                   filled: true,
-                                  prefixIcon: const ImageIcon(
-                                    AssetImage("assets/images/search.png"),
+                                  prefixIcon: const Icon(
+                                    Icons.search,
                                     color: Color(0xffAFAFAF),
                                   ),
                                   suffixIcon: searchController.text.isEmpty
@@ -142,12 +144,10 @@ class _DropDownSelectorState extends State<DropDownSelector> {
                                               listOfData = widget.listOfItems;
                                             });
                                           },
-                                          child: const ImageIcon(
-                                            AssetImage(
-                                                "assets/images/clear.png"),
+                                          child: const Icon(
+                                            Icons.clear,
                                             color: Color(0xff131313),
-                                          ),
-                                        ),
+                                          )),
                                   contentPadding: const EdgeInsets.all(10),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(8),
@@ -165,13 +165,22 @@ class _DropDownSelectorState extends State<DropDownSelector> {
                                         color: Color(0xffFFFFFF)),
                                   ),
                                   hintText: widget.textFieldHint ?? "Search",
-                                  hintStyle: GoogleFonts.poppins(
-                                      color: const Color(0xffAFAFAF),
+                                  hintStyle: const TextStyle(
+                                      color: Color(0xffAFAFAF),
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400)),
                             ),
                             Expanded(
-                              child: ListView.builder(
+                              child: ListView.separated(
+                                separatorBuilder: (context, index) {
+                                  return const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    child: Divider(
+                                      thickness: 0.5,
+                                    ),
+                                  );
+                                },
                                 physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: listOfData.length,
@@ -205,7 +214,7 @@ class _DropDownSelectorState extends State<DropDownSelector> {
         },
         decoration: InputDecoration(
           filled: true,
-          fillColor: Colors.black12,
+          fillColor: widget.containColor ?? Colors.black12,
           contentPadding:
               const EdgeInsets.only(left: 8, bottom: 0, top: 0, right: 15),
           hintText: widget.title,

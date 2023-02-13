@@ -1,6 +1,6 @@
 name: drop_down_selector
 description: A package to select single or multiple items from list of items and can search items.
-version: 0.0.2
+version: 0.0.6
 homepage: https://github.com/Musthafa-Ap/drop_down_selector
 
 environment:
@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^4.0.1
+
 
 dev_dependencies:
   flutter_test:
@@ -24,8 +24,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/images/
+  # assets:
+  #   - assets/images/
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
